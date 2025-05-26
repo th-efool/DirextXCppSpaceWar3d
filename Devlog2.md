@@ -1,6 +1,18 @@
+// Assuming the main loop function returns int
+```c++
+int AppRun() {
+    // ...
+    if (std::optional<int> returnvalue = Window::ProcessMessage()) {
+        return returnvalue; // ERROR: Cannot convert std::optional<int> to int
+    }
+    // ...
+    return 0; // Default exit
+}
+```
+
 # Ques - Why cant i `HINSTANCE Window::WindowClass::GetInstance() {return hInst;}` why this `HINSTANCE Window::WindowClass::GetInstance() {return wndClass.hInst;}`
 
-### ==**This is the SAME REASON you CAN'T SET default value for non-static var in cpp just like that  - THIIS VERY THING YOU DON'T UNDERSTAND IS THE SOURCE OF CONFUSION**==
+### ==**This is the SAME REASON you CAN'T SET default value for non-static var in cpp just like that  - THIIS VERY THING YOU DON'T UNDERSTAND IS THE SOURCE OF CONFUSION**, if hInst itself was static then you could and needn't access it through that static winClass or through `object.hisntance`==
 
 **This combination is fundamentally impossible in C++.**
 

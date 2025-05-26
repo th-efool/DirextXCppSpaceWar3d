@@ -1,12 +1,12 @@
-#include "base.h"
+#include <SiaRift/Core/Base.h>
 using namespace SiaRift;
-
-SiaRift::base::base()
+// Base class implementation for SiaRift
+SiaRift::Base::Base()
 {
 	// Constructor implementation
 }
 
-SiaRift::base::~base()
+SiaRift::Base::~Base()
 {
 	// Destructor implementation
 }

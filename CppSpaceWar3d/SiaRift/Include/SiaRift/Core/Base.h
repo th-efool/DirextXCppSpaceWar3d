@@ -1,5 +1,7 @@
-#pragma once
 
+#pragma once
+#include <optional>
+#include <stdexcept>
 // this file is used to define the Base class for the SiaRift framework.
 // included in every "header file" that needs to use the Base class.
 // Is Singleton class, no copy constructor, no move constructor, no destructor.

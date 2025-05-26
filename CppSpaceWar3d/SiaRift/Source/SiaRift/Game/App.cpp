@@ -1,27 +1,29 @@
-#include "Game.h"
+#include "SiaRift/Game/App.h"
+#include "SiaRift/Window/Window.h"
+
 using namespace SiaRift;
 
-SiaRift::Game::App()
+SiaRift::App::App()
 {
 	// Constructor implementation
 }
-SiaRift::Game::~App()
+SiaRift::App::~App()
 {
 	// Destructor implementation
 }
 
-int SiaRift::Game::App::Run()
+int SiaRift::App::Run()
 {
 	// Main application loop
 	while (true)
 	{
-
+		if (std::optional<int> returnvalue = Window::ProcessMessage()) { return *returnvalue; }
 		DoFrame();
 	}
 	return 0; // Return an exit code
 }
 
-void SiaRift::Game::App::DoFrame()
+void SiaRift::App::DoFrame()
 {
 	// Frame processing logic
 	// This could include updating game state, rendering, etc.

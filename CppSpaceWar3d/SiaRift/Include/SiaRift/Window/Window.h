@@ -11,14 +11,22 @@ namespace SiaRift
 	class Window :
 		public Base
 	{
+
+	public:
+		Window();
+		virtual ~Window() override;
+		static std::optional<int> ProcessMessage();
+		HWND hwnd;
+		SiaRect windowSiaRect;
+
+
 	public:
 		class WindowClass
 		{
 		public:
-			std::optional<int> ProcessMessage();
-//			static LRESULT CALLBACK HandleMessage(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam );
+			static LRESULT CALLBACK HandleMessageSetup(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam );
 //			static LRESULT CALLBACK HandleMessageThunk(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam );
-			static const char* getName() { return name; };
+			static LPCWSTR getName();
 			static HINSTANCE getInstance();
 		private:
 			WindowClass();
@@ -30,15 +38,9 @@ namespace SiaRift
 			WindowClass& operator=(WindowClass&&) = delete; // no move assignment operator
 			static WindowClass wndClass; // Static instance of WindowClass
 			HINSTANCE hinstance;
-			static constexpr const char* name = "SiaRift Window";
-
+			LPCWSTR name;
 		};
 
-	public: 
-		Window();
-		virtual ~Window() override;
-		HWND hwnd;
-		SiaRect windowSiaRect;
 	};
 }
 

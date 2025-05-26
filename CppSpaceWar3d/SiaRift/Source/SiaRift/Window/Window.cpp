@@ -1,29 +1,33 @@
-#include "Window.h"
 #include "SiaRift/Window/Window.h"
+
 using namespace SiaRift;
 
 SiaRift::Window::WindowClass SiaRift::Window::WindowClass::wndClass; // Static instance of WindowClass
 
 
 
-HINSTANCE SiaRift::Window::WindowClass::getInstance()  
+LPCWSTR SiaRift::Window::WindowClass::getName()
+{
+	return wndClass.name;
+}
+
+HINSTANCE SiaRift::Window::WindowClass::getInstance()
 {  
    return wndClass.hinstance; // Access the static instance to retrieve hinstance  
 }
 
-SiaRift::Window::WindowClass::WindowClass() : hinstance(GetModuleHandle(nullptr))
+SiaRift::Window::WindowClass::WindowClass() : hinstance(GetModuleHandle(nullptr)), name(L"SiaRiftWindowClass")
 {
 	// Constructor implementation
 	WNDCLASSEX wc = { 0 };
 	wc.cbSize = sizeof(WNDCLASSEX);
 	wc.style = CS_HREDRAW | CS_VREDRAW;
-	wc.lpfnWndProc = DefWindowProc; // Default window procedure
+	wc.lpfnWndProc = HandleMessageSetup; // the reason you can call wihtout scope resolution, is its an static method the entire reason
+	// we did `static LRESULT CALLBACK HandleMessageSetup()` instead of just `LRESULT CALLBACK HandleMessageSetup()`
 	wc.hInstance = GetModuleHandle(nullptr);
-	wc.lpszClassName = name;
-	wc.hIcon = LoadIcon(nullptr, IDI_APPLICATION);
+	wc.lpszClassName = getName(); 
 	wc.hCursor = LoadCursor(nullptr, IDC_ARROW);
 	wc.lpszMenuName = nullptr;
-	wc.hIconSm = LoadIcon(nullptr, IDI_APPLICATION);
 
 	if (!RegisterClassEx(&wc))
 	{
@@ -48,7 +52,7 @@ SiaRift::Window::Window()
 	// Constructor implementation
 	hwnd = CreateWindowEx(
 		0, // Optional window styles
-		getName(), // Window class
+		Window::WindowClass::getName(), // Window class
 		L"SiaRift Application", // Window text
 		WS_OVERLAPPEDWINDOW, // Window style
 		CW_USEDEFAULT, CW_USEDEFAULT, // don't use rect.left that doesn't represent position, use CW_USEDEFAULT instead
@@ -75,18 +79,30 @@ SiaRift::Window::~Window()
 }
 
 
-std::optional<int> SiaRift::Window::WindowClass::ProcessMessage()
+std::optional<int> SiaRift::Window::ProcessMessage()
 {
+	
 	MSG msg;
 	while (PeekMessage(&msg, nullptr, 0, 0, PM_REMOVE))
 	{
 		if (msg.message == WM_QUIT)
 		{
-			return msg.wParam; // Return the exit code
+			return  static_cast<int>(msg.wParam); // Return the exit code
 		}
 		TranslateMessage(&msg);
 		DispatchMessage(&msg);
 	}
-	return {}; // No message processed
+	return std::nullopt; // No message processed
 }
 
+LRESULT CALLBACK SiaRift::Window::WindowClass::HandleMessageSetup(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
+{
+	switch (msg)
+	{
+	case WM_DESTROY:
+		PostQuitMessage(0);
+		return 0;
+	default:
+		return DefWindowProc(hWnd, msg, wParam, lParam);
+	}
+}
