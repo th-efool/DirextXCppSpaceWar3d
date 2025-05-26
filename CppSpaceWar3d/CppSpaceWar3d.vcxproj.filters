@@ -18,19 +18,32 @@
     <ClCompile Include="SRProject\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="SiaRift\Source\SiaRift\Game\Game.cpp">
+    <ClCompile Include="SiaRift\Source\SiaRift\Game\App.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="SiaRift\Source\SiaRift\Game\Base.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="SiaRift\Source\SiaRift\Window\Window.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="SiaRift\Include\SiaRift\Game\Game.h">
+    <ClInclude Include="SiaRift\Include\SiaRift\Game\App.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="SiaRift\Include\SiaRift\Core\Base.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="SiaRift\Include\SiaRift\Window\Window.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SiaRift\Include\SiaRift\Window\WindowsDebloated.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Devlog1.md" />
+    <None Include="..\KanbanBoard.md" />
   </ItemGroup>
 </Project>
