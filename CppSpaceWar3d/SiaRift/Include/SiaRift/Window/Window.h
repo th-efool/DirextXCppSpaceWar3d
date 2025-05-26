@@ -4,6 +4,7 @@
 // Windows.h and our Window.h are complete different files.
 // However Windows.h is BLOATED AS FUCK!!!, we'll import our custom DEBLOATED Windows.h
 #include "SiaRift/Window/WindowsDebloated.h"
+#include "SiaRift/Math/SiaMath.h"
 
 namespace SiaRift
 {
@@ -27,7 +28,7 @@ namespace SiaRift
 		Window();
 		virtual ~Window() override;
 		HWND hwnd;
-	
+		SiaRect windowSiaRect;
 	};
 }
 

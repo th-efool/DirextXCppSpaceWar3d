@@ -32,8 +32,9 @@ SiaRift::Window::WindowClass::~WindowClass()
 
 SiaRift::Window::Window()
 {
-	RECT rect{ 0,0, 800, 600 }; // Default window size
-
+	windowSiaRect = SiaRift::SiaRect(800, 600); // Default window size
+	RECT rect{ windowSiaRect.left,windowSiaRect.top, windowSiaRect.right(), windowSiaRect.bottom()}; // Default window size
+	AdjustWindowRect(&rect, WS_OVERLAPPEDWINDOW, FALSE); // Adjust the window rectangle to account for the window style
 
 	// Constructor implementation
 	hwnd = CreateWindowEx(

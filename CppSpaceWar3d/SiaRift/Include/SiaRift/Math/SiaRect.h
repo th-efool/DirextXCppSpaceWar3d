@@ -1,5 +1,4 @@
 #pragma once
-#pragma once
 
 namespace SiaRift
 {
@@ -10,6 +9,8 @@ namespace SiaRift
         int top{};
         int width{};
         int height{};
+		int right() const { return left + width; }
+		int bottom() const { return top + height; }
 
         // Constructors (public by default in a struct)
         SiaRect(): left(0), top(0), width(256), height(256){}
