@@ -161,6 +161,7 @@
   <ItemGroup>
     <ClInclude Include="SiaRift\Include\SiaRift\Core\Base.h" />
     <ClInclude Include="SiaRift\Include\SiaRift\Game\App.h" />
+    <ClInclude Include="SiaRift\Include\SiaRift\Math\SiaRect.h" />
     <ClInclude Include="SiaRift\Include\SiaRift\Window\Window.h" />
     <ClInclude Include="SiaRift\Include\SiaRift\Window\WindowsDebloated.h" />
   </ItemGroup>

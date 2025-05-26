@@ -41,6 +41,9 @@
     <ClInclude Include="SiaRift\Include\SiaRift\Window\WindowsDebloated.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="SiaRift\Include\SiaRift\Math\SiaRect.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Devlog1.md" />

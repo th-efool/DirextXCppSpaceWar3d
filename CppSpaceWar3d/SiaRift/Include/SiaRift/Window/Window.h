@@ -27,6 +27,7 @@ namespace SiaRift
 		Window();
 		virtual ~Window() override;
 		HWND hwnd;
+	
 	};
 }
 
