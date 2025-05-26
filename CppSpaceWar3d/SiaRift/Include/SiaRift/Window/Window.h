@@ -15,6 +15,12 @@ namespace SiaRift
 		class WindowClass
 		{
 		public:
+			std::optional<int> ProcessMessage();
+//			static LRESULT CALLBACK HandleMessage(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam );
+//			static LRESULT CALLBACK HandleMessageThunk(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam );
+			static const char* getName() { return name; };
+			static HINSTANCE getInstance();
+		private:
 			WindowClass();
 			~WindowClass();
 			// Singleton pattern
@@ -22,8 +28,12 @@ namespace SiaRift
 			WindowClass(WindowClass&&) = delete;      // no move constructor
 			WindowClass& operator=(const WindowClass&) = delete; // no copy assignment operator
 			WindowClass& operator=(WindowClass&&) = delete; // no move assignment operator
+			static WindowClass wndClass; // Static instance of WindowClass
+			HINSTANCE hinstance;
+			static constexpr const char* name = "SiaRift Window";
+
 		};
-		static WindowClass wndClass; // Static instance of WindowClass
+
 	public: 
 		Window();
 		virtual ~Window() override;

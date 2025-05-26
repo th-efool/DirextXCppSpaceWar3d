@@ -90,6 +90,10 @@ Program continues
 -	The compiler finds it using configured include paths.
 Let me know if you want to see how to check or change your include directories in Visual Studio!
 
+# Question - You don't explicitly assign anything to `Window::WindowClass::wndClass` in the .cpp file, and you don't directly call `Window::WindowClass::wndClass.someMethod();` anywhere to trigger it.
+In C++, that line Window::WindowClass Window::WindowClass::wndClass; is not just a declaration. For a static (or global) object of a user-defined type like WindowClass, this line is the definition of that object, and as part of its definition, it triggers the automatic call to its default constructor.
+
+
 
 
 # Question If there are multiple window object doesnt that mean `Window::WindowClass Window::WindowClass::wndClass` in .cpp get calling multiple times??

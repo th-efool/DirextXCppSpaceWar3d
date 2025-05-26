@@ -2,7 +2,16 @@
 #include "SiaRift/Window/Window.h"
 using namespace SiaRift;
 
-SiaRift::Window::WindowClass::WindowClass()
+SiaRift::Window::WindowClass SiaRift::Window::WindowClass::wndClass; // Static instance of WindowClass
+
+
+
+HINSTANCE SiaRift::Window::WindowClass::getInstance()  
+{  
+   return wndClass.hinstance; // Access the static instance to retrieve hinstance  
+}
+
+SiaRift::Window::WindowClass::WindowClass() : hinstance(GetModuleHandle(nullptr))
 {
 	// Constructor implementation
 	WNDCLASSEX wc = { 0 };
@@ -10,7 +19,7 @@ SiaRift::Window::WindowClass::WindowClass()
 	wc.style = CS_HREDRAW | CS_VREDRAW;
 	wc.lpfnWndProc = DefWindowProc; // Default window procedure
 	wc.hInstance = GetModuleHandle(nullptr);
-	wc.lpszClassName = L"SiaRiftWindowClass";
+	wc.lpszClassName = name;
 	wc.hIcon = LoadIcon(nullptr, IDI_APPLICATION);
 	wc.hCursor = LoadCursor(nullptr, IDC_ARROW);
 	wc.lpszMenuName = nullptr;
@@ -39,7 +48,7 @@ SiaRift::Window::Window()
 	// Constructor implementation
 	hwnd = CreateWindowEx(
 		0, // Optional window styles
-		L"SiaRiftWindowClass", // Window class
+		getName(), // Window class
 		L"SiaRift Application", // Window text
 		WS_OVERLAPPEDWINDOW, // Window style
 		CW_USEDEFAULT, CW_USEDEFAULT, // don't use rect.left that doesn't represent position, use CW_USEDEFAULT instead
@@ -55,3 +64,29 @@ SiaRift::Window::Window()
 	}
 	ShowWindow(hwnd, SW_SHOWDEFAULT);
 }
+SiaRift::Window::~Window()
+{
+	// Destructor implementation
+	if (hwnd)
+	{
+		DestroyWindow(hwnd);
+		hwnd = nullptr;
+	}
+}
+
+
+std::optional<int> SiaRift::Window::WindowClass::ProcessMessage()
+{
+	MSG msg;
+	while (PeekMessage(&msg, nullptr, 0, 0, PM_REMOVE))
+	{
+		if (msg.message == WM_QUIT)
+		{
+			return msg.wParam; // Return the exit code
+		}
+		TranslateMessage(&msg);
+		DispatchMessage(&msg);
+	}
+	return {}; // No message processed
+}
+
