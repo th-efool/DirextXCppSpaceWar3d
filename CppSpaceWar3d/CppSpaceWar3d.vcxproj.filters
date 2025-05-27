@@ -51,5 +51,6 @@
   <ItemGroup>
     <None Include="Devlog1.md" />
     <None Include="..\KanbanBoard.md" />
+    <None Include="..\Devlog2.md" />
   </ItemGroup>
 </Project>

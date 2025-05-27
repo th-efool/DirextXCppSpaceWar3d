@@ -167,6 +167,7 @@
     <ClInclude Include="SiaRift\Include\SiaRift\Window\WindowsDebloated.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\Devlog2.md" />
     <None Include="..\KanbanBoard.md" />
     <None Include="Devlog1.md" />
   </ItemGroup>

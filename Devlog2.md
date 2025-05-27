@@ -1,3 +1,15 @@
+﻿WINDOW FINALLY OPENED!!! 😭 im crying , i love this so much.
+1. Removed std::optional stuff for now and just hard coded it into int 
+2. after all errors were patcehd up it wasnt showing window, the reason for it was you didnt created any window Window::ProcessMessage is sattic fuction, it wont call windo0w concstructor for an window constructor to be called there mneeeds to be an object, that object must have been in your App.h , that you didnt 
+
+and you did knew before but this is standard way
+.h file [ customclass obj1;]
+but this decleration wont automatically call constructor in .cpp file oyu MUST EXPLCIITLY CALL IT, MOSTLY IT'S CALLED WITH CONSTRUCTOr of that class itself in intitializer list!
+yes we not only can initalize int, bool, float all th soe normal stuff but also pointers and other stuff that requires new or constructor or something
+AND YOU HAVE TO DO IT,  YOU CANT SKIP IT!!!
+.cpp file [ Constructor(): obj1()]
+
+
 // Assuming the main loop function returns int
 ```c++
 int AppRun() {
