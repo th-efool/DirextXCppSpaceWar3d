@@ -1,9 +1,8 @@
 #include "SiaRift/Game/App.h"
-#include "SiaRift/Window/Window.h"
 
 using namespace SiaRift;
 
-SiaRift::App::App()
+SiaRift::App::App() : window() // Initialize the Window member
 {
 	// Constructor implementation
 }
@@ -17,7 +16,13 @@ int SiaRift::App::Run()
 	// Main application loop
 	while (true)
 	{
-		if (std::optional<int> returnvalue = Window::ProcessMessage()) { return *returnvalue; }
+		if (const auto returnvalue = Window::ProcessMessage()) {
+			if (returnvalue == 0) {}
+			else {
+				return returnvalue
+					;
+			};
+		}
 		DoFrame();
 	}
 	return 0; // Return an exit code

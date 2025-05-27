@@ -1,5 +1,8 @@
 #pragma once
 #include "SiaRift/Core/Base.h"
+#include "SiaRift/Window/Window.h"
+
+
 
 namespace SiaRift
 {
@@ -11,11 +14,10 @@ namespace SiaRift
 	private:
 		void DoFrame();
 
-
-
 	public:
 		App();
 		virtual ~App() override;
+		Window window;
 	};
 }
 

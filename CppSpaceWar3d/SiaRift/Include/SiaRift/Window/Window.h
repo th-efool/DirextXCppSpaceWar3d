@@ -6,6 +6,7 @@
 #include "SiaRift/Window/WindowsDebloated.h"
 #include "SiaRift/Math/SiaMath.h"
 
+
 namespace SiaRift
 {
 	class Window :
@@ -15,7 +16,7 @@ namespace SiaRift
 	public:
 		Window();
 		virtual ~Window() override;
-		static std::optional<int> ProcessMessage();
+		static int ProcessMessage();
 		HWND hwnd;
 		SiaRect windowSiaRect;
 

@@ -79,7 +79,7 @@ SiaRift::Window::~Window()
 }
 
 
-std::optional<int> SiaRift::Window::ProcessMessage()
+int SiaRift::Window::ProcessMessage()
 {
 	
 	MSG msg;
@@ -87,13 +87,15 @@ std::optional<int> SiaRift::Window::ProcessMessage()
 	{
 		if (msg.message == WM_QUIT)
 		{
-			return  static_cast<int>(msg.wParam); // Return the exit code
+			return 1;
+			//return  static_cast<int>(msg.wParam); // Return the exit code
 		}
 		TranslateMessage(&msg);
 		DispatchMessage(&msg);
 	}
-	return std::nullopt; // No message processed
-}
+	return 0;
+	//return std::nullopt; // No message processed
+} 
 
 LRESULT CALLBACK SiaRift::Window::WindowClass::HandleMessageSetup(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 {
